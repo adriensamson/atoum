@@ -16,6 +16,9 @@ class php extends cli\command
 			if ($this->adapter->defined('PHP_BINARY') === true)
 			{
 				$phpPath = $this->adapter->constant('PHP_BINARY');
+				if ($this->adapter->defined('HHVM_VERSION')) {
+					$phpPath .= ' --php';
+				}
 			}
 
 			if ($phpPath === null)
