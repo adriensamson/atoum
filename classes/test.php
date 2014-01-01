@@ -864,7 +864,8 @@ abstract class test implements observable, \countable
 			{
 				foreach ($this->getMethodPhpVersions($testMethod) as $phpVersion => $operator)
 				{
-					if (version_compare(phpversion(), $phpVersion, $operator) === false)
+					if (version_compare(phpversion(), $phpVersion, $operator) === false
+						|| (defined('HHVM_VERSION') && $phpVersion == '5.4' && $operator == '>='))
 					{
 						throw new test\exceptions\skip('PHP version ' . PHP_VERSION . ' is not ' . $operator . ' to ' . $phpVersion);
 					}
